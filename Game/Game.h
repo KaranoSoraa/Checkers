@@ -43,6 +43,7 @@ public:
         while (++turn_num < Max_turns)
         {
             beat_series = 0;
+            // ищем всех возможные ходы.
             logic.find_turns(turn_num % 2);
             if (logic.turns.empty())
                 break;
