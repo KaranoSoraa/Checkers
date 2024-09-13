@@ -7,15 +7,15 @@
 #include "../Models/Project_path.h"
 
 #ifdef __APPLE__
-    #include <SDL2/SDL.h>
-    #include <SDL2/SDL_image.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #else
-    #include <SDL.h>
-    #include <SDL_image.h>
+#include <SDL.h>
+#include <SDL_image.h>
 #endif
 
 using namespace std;
-
+// Объявление класса, конструктора поумолчанию, обычного, методов класса.
 class Board
 {
 public:
@@ -25,7 +25,7 @@ public:
     }
 
     // draws start board
-    int start_draw()
+    int start_draw() // Отрисовка всего поля. 
     {
         if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         {
@@ -70,7 +70,7 @@ public:
         }
         SDL_GetRendererOutputSize(ren, &W, &H);
         make_start_mtx();
-        rerender();
+        rerender(); // Функция для отрисовки объектов на поле.
         return 0;
     }
 
@@ -268,7 +268,7 @@ private:
                 SDL_RenderCopy(ren, piece_texture, NULL, &rect);
             }
         }
-
+        // Отрисовка элементов на поле. 
         // draw hilight
         SDL_SetRenderDrawColor(ren, 0, 255, 0, 0);
         const double scale = 2.5;
@@ -303,7 +303,7 @@ private:
 
         // draw result
         if (game_results != -1)
-        {
+        {   // Отрисовка победителя партии. 
             string result_path = draw_path;
             if (game_results == 1)
                 result_path = white_path;
@@ -329,27 +329,27 @@ private:
 
     void print_exception(const string& text) {
         ofstream fout(project_path + "log.txt", ios_base::app);
-        fout << "Error: " << text << ". "<< SDL_GetError() << endl;
+        fout << "Error: " << text << ". " << SDL_GetError() << endl;
         fout.close();
     }
 
-  public:
+public:
     int W = 0;
     int H = 0;
     // history of boards
     vector<vector<vector<POS_T>>> history_mtx;
 
-  private:
-    SDL_Window *win = nullptr;
-    SDL_Renderer *ren = nullptr;
+private:
+    SDL_Window* win = nullptr;
+    SDL_Renderer* ren = nullptr;
     // textures
-    SDL_Texture *board = nullptr;
-    SDL_Texture *w_piece = nullptr;
-    SDL_Texture *b_piece = nullptr;
-    SDL_Texture *w_queen = nullptr;
-    SDL_Texture *b_queen = nullptr;
-    SDL_Texture *back = nullptr;
-    SDL_Texture *replay = nullptr;
+    SDL_Texture* board = nullptr;
+    SDL_Texture* w_piece = nullptr;
+    SDL_Texture* b_piece = nullptr;
+    SDL_Texture* w_queen = nullptr;
+    SDL_Texture* b_queen = nullptr;
+    SDL_Texture* back = nullptr;
+    SDL_Texture* replay = nullptr;
     // texture files names
     const string textures_path = project_path + "Textures/";
     const string board_path = textures_path + "board.png";
