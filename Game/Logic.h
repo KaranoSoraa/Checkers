@@ -459,17 +459,16 @@ private:
             break;
         }
     }
-
 public:
-    vector<move_pos> turns;
-    bool have_beats;
-    int Max_depth;
+    vector<move_pos> turns; // Вектор ходов, содержащий последовательность ходов.
+    bool have_beats; // Флаг, указывающий на возможность бить.
+    int Max_depth; // Максимальная глубина поиска в дереве принятия решений.
 
 private:
-    default_random_engine rand_eng;
-    string optimization;
-    vector<move_pos> next_move;
-    vector<int> next_best_state;
-    Board* board;
-    Config* config;
+    default_random_engine rand_eng; // Генератор случайных чисел по умолчанию.
+    string optimization; // Строка для хранения информации об оптимизации.
+    vector<move_pos> next_move; // Вектор следующего возможного хода.
+    vector<int> next_best_state; // Вектор для хранения следующего лучшего состояния.
+    Board* board; // Указатель на объект класса доски.
+    Config* config; // Указатель на объект класса конфигурации.
 };
